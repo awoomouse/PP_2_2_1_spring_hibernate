@@ -18,18 +18,13 @@ public class MainApp {
 
       userService.add(new User("Masha", "Popova", "user1@mail.ru", new Car(123456, "Audi")));
       userService.add(new User("Pasha", "Petrov", "user2@mail.ru", new Car(654321, "BMW")));
-
-//      userService.add(new User("Semen", "Nemoshniy", "user5@mail.ru"));
-//      userService.add(new User("Vasiliy", "Kulikov", "user6@mail.ru"));
-//      userService.add(new User("Maxim", "Tereshenko", "user7@mail.ru"));
-//      userService.add(new User("Sergey", "Sherman", "user8@mail.ru"));
-
       userService.add(new User("Ivan", "Sidorov", "user3@mail.ru", new Car(321456, "Nissan")));
       userService.add(new User("Petr", "Reshalkin", "user4@mail.ru", new Car(432567, "Toyota")));
 
-
-
-
+      User user1 = null;       //поля для теста equals and hashCode
+      User user2 = null;
+      User user3 = null;
+      User user4 = null;
       List<User> users = userService.listUsers();
       for (User user : users) {
          System.out.println("Id = "+user.getId());
@@ -38,16 +33,37 @@ public class MainApp {
          System.out.println("Email = "+user.getEmail());
          System.out.println("Car: ");
          System.out.println("model = "+user.getCar().getModel());
-         System.out.println("model = "+user.getCar().getSeries());
+         System.out.println("series = "+user.getCar().getSeries());
+         //для теста equals and hashCode
+         if (user.getId() == 1) {
+            user1 = user;
+         }
+         if (user.getId() == 2) {
+            user2 = user;
+         }
+         if (user.getId() == 3) {
+            user3 = user;
+         }
+         if (user.getId() == 4) {
+            user4 = user;
+         }
       }
 
-      System.out.println("--------TEST--getUserWithCar---------");
+      System.out.println("--------TEST--getCarOwner---------");
 
-      System.out.println(userService.getUserWithCar(123456, "Audi"));
-      System.out.println(userService.getUserWithCar(654321, "BMW"));
-      System.out.println(userService.getUserWithCar(321456, "Nissan"));
-      System.out.println(userService.getUserWithCar(432567, "Toyota"));
+      System.out.println(userService.getCarOwner(123456, "Audi"));
+      System.out.println(userService.getCarOwner(654321, "BMW"));
+      System.out.println(userService.getCarOwner(321456, "Nissan"));
+      System.out.println(userService.getCarOwner(432567, "Toyota"));
 
+      System.out.println("-----------TEST--equals--hashCode---------------");
+
+      System.out.println(user1.equals(user1));                    //result = true
+      System.out.println(user1.equals(user2));                    //result = false
+      System.out.println(user3.hashCode());                       //hashCode
+      System.out.println(user4.hashCode());                       //hashCode
+      System.out.println(user3.hashCode() == user3.hashCode());   //result = true
+      System.out.println(user3.hashCode() == user4.hashCode());   //result false
 
       context.close();
    }
