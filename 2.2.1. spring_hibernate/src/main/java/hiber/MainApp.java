@@ -16,16 +16,16 @@ public class MainApp {
 
       UserService userService = context.getBean(UserService.class);
 
-      userService.add(new User("Masha", "Popova", "user1@mail.ru", new Car(123456, "Audi")));
-      userService.add(new User("Pasha", "Petrov", "user2@mail.ru", new Car(654321, "BMW")));
-      userService.add(new User("Ivan", "Sidorov", "user3@mail.ru", new Car(321456, "Nissan")));
-      userService.add(new User("Petr", "Reshalkin", "user4@mail.ru", new Car(432567, "Toyota")));
+      userService.addUserWithCar(new User("Masha", "Popova", "user1@mail.ru", new Car(123456, "Audi")));
+      userService.addUserWithCar(new User("Pasha", "Petrov", "user2@mail.ru", new Car(654321, "BMW")));
+      userService.addUserWithCar(new User("Ivan", "Sidorov", "user3@mail.ru", new Car(321456, "Nissan")));
+      userService.addUserWithCar(new User("Petr", "Reshalkin", "user4@mail.ru", new Car(432567, "Toyota")));
 
       User user1 = null;       //поля для теста equals and hashCode
       User user2 = null;
       User user3 = null;
       User user4 = null;
-      List<User> users = userService.listUsers();
+      List<User> users = userService.getAllUsers();
       for (User user : users) {
          System.out.println("Id = "+user.getId());
          System.out.println("First Name = "+user.getFirstName());
